@@ -13,6 +13,11 @@ namespace Casgem.BusinessLayer.Concrete
     {
         private readonly ICustomerDal _customerDal;
 
+        public CustomerManager(ICustomerDal customerDal)
+        {
+            _customerDal = customerDal;
+        }
+
         public Customer TGetById(int id)
         {
             return _customerDal.GetByID(id);

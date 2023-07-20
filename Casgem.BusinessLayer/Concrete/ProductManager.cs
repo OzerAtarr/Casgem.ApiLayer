@@ -13,6 +13,11 @@ namespace Casgem.BusinessLayer.Concrete
     {
         private readonly IProductDal _productDal;
 
+        public ProductManager(IProductDal productDal)
+        {
+            _productDal = productDal;
+        }
+
         public Product TGetById(int id)
         {
             return _productDal.GetByID(id);
@@ -36,6 +41,11 @@ namespace Casgem.BusinessLayer.Concrete
         public void TUpdate(Product t)
         {
             _productDal.Update(t);
+        }
+
+        public List<Product> TGetProductsWithCategories()
+        {
+            return _productDal.GetProductsWithCategories();
         }
     }
 }

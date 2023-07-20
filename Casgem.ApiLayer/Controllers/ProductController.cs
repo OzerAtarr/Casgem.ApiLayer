@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Casgem.ApiLayer.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/[controller]/[action]")]
     [ApiController]
     public class ProductController : ControllerBase
     {
@@ -24,13 +24,13 @@ namespace Casgem.ApiLayer.Controllers
             return Ok(values);
         }
         [HttpPost]
-        public IActionResult AddProduct(Product product)
+        public IActionResult ProductAdd(Product product)
         {
             _productService.TInsert(product);
             return Ok();
         }
         [HttpDelete]
-        public IActionResult DeleteProduct(int id)
+        public IActionResult ProductDelete(int id)
         {
             var value = _productService.TGetById(id);
             _productService.TDelete(value);
@@ -46,6 +46,14 @@ namespace Casgem.ApiLayer.Controllers
         public IActionResult UpdateProduct(Product product)
         {
             _productService.TUpdate(product);
+            return Ok();
+        }
+
+        [Route("(\"ProductListWithCategory\")")]
+        [HttpGet]
+        public IActionResult ProductListWithCategory()
+        {
+            var values = _productService.TGetProductsWithCategories();
             return Ok();
         }
     }
